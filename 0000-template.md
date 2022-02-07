@@ -1,5 +1,5 @@
-- Start Date: (fill me in with today's date, DD-MM-YYYY)
-- RFC MR: (leave this empty)
+- Start Date: (fill me in with today's date, YYYY-MM-DD)
+- RFC Number: (leave this empty)
 
 # (RFC title goes here)
 
@@ -18,7 +18,7 @@ outcome?
 
 > Explain the design in enough detail for somebody
 familiar with the infrastructure to understand. This should get into specifics and corner-cases,
-and include examples of how the service is used. Any new terminology should be
+and include examples of how it is used. Any new terminology should be
 defined here.
 
 ## Drawbacks
