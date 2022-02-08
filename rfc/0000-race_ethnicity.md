@@ -44,7 +44,7 @@ Fixes
 
 ### 3. Merge the Race and Ethnicity Domains
 
-### 4. One "Standard" Race, one "Standard" Ethnicity Observation
+### 4. Standard Observation Concepts for Race and Ethnicity
 
 ### 5. Update convention
 
