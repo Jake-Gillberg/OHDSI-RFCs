@@ -14,22 +14,30 @@ outcome?
 
 ## Design Detail
 
-### 1. Replace Race and Ethnicity Vocabularies with [CDC Race & Ethnicity v1.2](https://phinvads.cdc.gov/vads/DownloadHotTopicDetailFile.action?filename=29DF7191-76CC-E611-8E51-0017A477041A)
+### 1. Update Race and Ethnicity Vocabularies with [CDC Race & Ethnicity v1.2](https://phinvads.cdc.gov/vads/DownloadHotTopicDetailFile.action?filename=29DF7191-76CC-E611-8E51-0017A477041A)
 
-The current OMOP Race and Ethnicity vocabularies are not explicit about their origin, but appear to come from a prior version of the "CDC Race & Ethnicity" vocabulary. These vocabularies will be updated to the most current version (v1.2) and this origin will be explicitly stated.
+The current OMOP 'Race' and 'Ethnicity' vocabularies are not explicit about their origin, but appear to come from a prior version of the "CDC Race & Ethnicity" vocabulary. These vocabularies will be updated to the most current version (v1.2) and this origin will be explicitly stated.
 
 The vocabulary and its internal mapping can be found [here @ phinvads.cdc.gov](https://phinvads.cdc.gov/vads/DownloadHotTopicDetailFile.action?filename=29DF7191-76CC-E611-8E51-0017A477041A)
 
 Note, supporting the concepts found in CDC Race & Ethnicity v1.2 is relevant to the terminological alignment that is happening in the OMOP+FHIR workgroup, as this vocabulary also serves as the base vocabulary for the current US Core IG (4.0.0) and proposed update (4.1.0) race and ethnicity extensions.
 
- - All codes will have `vocabulary_id = 'CDC Race and Ethnicity'`
+ - All codes will have `vocabulary_id = 'CDC Race and Ethnicity'` instead of `Race` or `Ethnicity`
  - Codes `1000-9` "Race" and `2133-7` "Ethnicity" will be marked as Classification Concepts, all others will be marked as Standard concepts.
- - the CDC v1.2 concepts will retain their `concept_id`s from the current Race and Ethnicity Vocabulary concepts
+ - The CDC v1.2 concepts that already exist in the current 'Race' and 'Ethnicity' vocabularies will retain their `concept_id`s from the current Race and Ethnicity Vocabulary concepts
  - `concept_code`s will be updated to reflect the concept codes in CDC v1.2, not the heirarchical codes (for example `1002-5` for 'American Indian or Alaska Native' instead of `1`)
 
-### 2. Add or "make standard" additional concepts captured but not covered by CDC v1.2
+Fixes
+ - [no standard concept for German](https://forums.ohdsi.org/t/question-on-mapping-race/15759)
 
-- "Asian or Pacific islander"
+
+### 2. Add or "make standard" additional concepts not covered by CDC v1.2
+
+- "Asian or Pacific Islander"
+
+    This is an old OMB term that can often be found in source data in the US.
+
+    SNOMED 413581001, `concept_id 4184984` will be marked as Standard, and as subsuming CDCv1.2 2028-9 "Asian" `concept_id 8515` and CDCv1.2 2076-8 "Native Hawaiian or Other Pacific Islander" `concept_id 8557`
 - ...
 - multi
 - MENA
