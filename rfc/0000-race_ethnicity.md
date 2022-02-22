@@ -1,4 +1,4 @@
-- Start Date: 2022-07-02
+- Start Date: 2022-02-07
 - RFC Number:
 
 # OMOP Race and Ethnicity
