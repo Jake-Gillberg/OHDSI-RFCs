@@ -1,16 +1,51 @@
 - Start Date: 2022-02-07
 - RFC Number:
+- Authors: Jake Gillberg, Andrew Williams
 
 # OMOP Race and Ethnicity
 
 ## Summary
 
-> One paragraph explanation of the change.
+A proposal to update OMOP race and ethnicity vocabulary and ETL conventions to support a more nuanced and flexible representation, including changes in self-identification over time and multi-racial / multi-ethnic identities.
 
 ## Motivation
 
-> Why are we doing this? What use cases does it support? What is the expected
-outcome?
+Research on the relationship between patients' complex race/ethnicity/culture identities and health requires a more nuanced and flexible representation than is possible with the current OMOP vocab and ETL conventions.
+
+Race and ethnicity are overlapping constructs that are defined in different ways in source data and by OHDSI researchers using OMOPed data. In order
+to capture the data with maximum granularity and provide researchers with appropriate flexibility in using the standard OMOP concepts, OMOP vocab 
+and ETL conventions for race/ethnicity need to be nuanced, flexible, and not force source data to be lumped in ways that restrict researchers' options. 
+
+These requirements are illustrated by publications below. These studies found important relationships between health outcomes and identity categories
+that could not be done in OHDSI using current vocab and ETL conventions. The studies could not be done for any of three reasons: 1) they did not impose 
+a race vs. ethnicity distinction; 2) they did not use OMOP's aggregate race/ethnicity categories; 3) they did capture and use distinct multiracial/multiethnic 
+categories. 
+
+NOTE: Entire journals and academic and government departments are focused solely on analyses of these identity-health relationships and with clarifying 
+their interactions with biological and other social/environmental determinants of health. The creation of these journals and departments was motivated by
+the urgent need to develop evidence-based policies for improving health in disparate communities. This small sample of published studies simply indicates 
+the kind of restrictions that are faced by OHDSI researchers who want to meet these important evidence needs. A brief search will find hundreds of examples.
+
+### Examples
+
+#### [Ethnic and Racial Differences in the Smoking-Related Risk of Lung Cancer](https://www.nejm.org/doi/full/10.1056/NEJMoa033250)
+
+  > Conclusion: Among cigarette smokers, African Americans and Native Hawaiians are more susceptible to lung cancer than whites, Japanese Americans, and Latinos.
+  > 
+  > NOTE: Ethnic catagories (Latinos) are combined with race categories and Native Hawaiian is not lumped with other Pacific Islander identities into a single category.
+
+
+#### [The Relationship Between Mixed Race/Ethnicity, Developmental Assets, and Mental Health Among Youth](https://doi.org/10.1007/s40615-018-0501-2)
+
+  > ...youth of mixed race/ethnicity are more likely to be at risk for poor mental health outcomes, yet less likely to mitigate this risk even with similar number of external developmental assets as their single race/ethnic counterparts
+  > 
+  > NOTE: Race and ethnicity categories are combined and individuals who identity as multiethnic/multiracial were found to have distinct health outcomes from individuals who identity with a single race/enthicity.
+
+#### [Race, Multiraciality, Income, and Infant Mortality: Markers of Racial Equity](https://doi.org/10.1007/s10826-022-02246-9)
+
+  > ...infants with Black heritage have the worst outcomes (12.34 IMR). Multiracial infants (20.5% of the population) tend to be from higher income families than monoracial minority infants. Looking further, we find that this translates to better outcomes depending on racial group and multiraciality. Multiracial higher-income Black families have substantially better outcomes (2.85 IMR) than their single Black race (12.63 IMR) or lower income multiracial peers (16.16 IMR).
+  > 
+  > NOTE: Individuals who identity with a multiethnic catagory were found to have distinct health outcomes from individuals who identity with a single race/enthic category.
 
 ## Design Detail
 
@@ -106,9 +141,7 @@ Fixes
 - In the case where recorded values are ambiguous as to whether a recorded value was an observation of race or ethnicity (for example, "check all races and ethnicities that apply" without the categories being clear from context that they are racial or ethnic), values should be stored as both race observations and ethnicity observations and in both person table columns.
 - In the case where recorded values are NOT ambiguous as to whether a recorded value was on observation of race or ethnicity, values should be stored in their respective observations/columns, regardless of external judgement on whether or not the category is a valid race or ethnicity. (For example, "Hispanic or Latino" recorded as an answer to "Select all racial groups you identifiy with" should be entered as an observation of race.)
 
-### 6. Mapping non-standard codes to standard
-
-
+### 6. Mapping non-standard race and ethnicity concepts to standard concepts
 
 ## Drawbacks
 
@@ -140,7 +173,6 @@ This section is intended to encourage you as an author to think about the lesson
 
 ### 1. Hiding, but keeping available for use, heirarchical mappings from standard concepts which do not make sense outside of a US context
 
-### 2. Mapping and marking as "non-standard"
 > What parts of the design do you expect to resolve through the RFC process before this gets merged?
 
 > What parts of the design do you expect to resolve through the implementation of this feature before stabilisation?
